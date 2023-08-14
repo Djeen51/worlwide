@@ -3,8 +3,11 @@
 import { useState } from "react";
 
 import styles from "./Form.module.css";
+import { useNavigate } from "react-router-dom";
+import Button from "./Button";
 
 export function convertToEmoji(countryCode) {
+
   const codePoints = countryCode
     .toUpperCase()
     .split("")
@@ -14,6 +17,8 @@ export function convertToEmoji(countryCode) {
 
 function Form() {
   const [cityName, setCityName] = useState("");
+  const navigate = useNavigate();
+  // eslint-disable-next-line no-unused-vars
   const [country, setCountry] = useState("");
   const [date, setDate] = useState(new Date());
   const [notes, setNotes] = useState("");
@@ -49,8 +54,10 @@ function Form() {
       </div>
 
       <div className={styles.buttons}>
-        <button>Add</button>
-        <button>&larr; Back</button>
+         <Button type={"primary"} onClick={()=> {}}>Add</Button>
+        <Button type={"back"} onClick={(e) => {
+          e.preventDefault();
+          navigate(-1)}}>&larr; Back</Button>
       </div>
     </form>
   );
